@@ -1,28 +1,22 @@
-import os
-from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
+from telegram.ext import Updater, CommandHandler
 
-# קבלת הטוקן מהסביבה (Render או מקומית)
-TOKEN = os.environ.get("8395742526:AAEsUoSXNzL8LYQN3Cn2lLEb-syoy54LfgA")
+TOKEN = os.environ.get("BOT_TOKEN")  # Replace with your actual bot token
 
 def start(update, context):
-    update.message.reply_text("🎉 ברוכים הבאים לבוט הגשר שלנו! זהו שער לעולם של אמת, לא זיופים!")
+    update.message.reply_text("Welcome to Treshener Bot 🌌 This is your gateway to original product!")
 
 def help_command(update, context):
-    update.message.reply_text("🔥 הבוט שלנו מפנה אותך רק לדברים מקוריים.\nכדי להתחיל השתמש ב־/start")
+    update.message.reply_text("This bot is a bridge to real stuff, not fake junk. Use /start to begin.")
 
 def unknown(update, context):
-    update.message.reply_text("🤖 לא הבנתי את הפקודה הזאת. נסה /start או /help")
+    update.message.reply_text("Sorry, I don't recognize that command. Try /start or /help.")
 
-def main():
-    updater = Updater(token=TOKEN, use_context=True)
-    dp = updater.dispatcher
+updater = Updater(TOKEN)
+dp = updater.dispatcher
 
-    dp.add_handler(CommandHandler("start", start))
-    dp.add_handler(CommandHandler("help", help_command))
-    dp.add_handler(MessageHandler(Filters.command, unknown))
+dp.add_handler(CommandHandler("start", start))
+dp.add_handler(CommandHandler("help", help_command))
+dp.add_handler(CommandHandler(None, unknown))
 
-    updater.start_polling()
-    updater.idle()
-
-if __name__ == "__main__":
-    main()
+updater.start_polling()
+updater.idle()
