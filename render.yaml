@@ -1,0 +1,8 @@
+services:
+  - type: web
+    name: Treshener_bot
+    env: python
+    region: oregon
+    plan: free
+    buildCommand: ""
+    startCommand: "python main.py"
